@@ -52,5 +52,6 @@ def parametrizacion_mov(movimiento:list):
             return [int(movimiento[1]) - 1, i]
 
 
-def Verifica_come():
+
+def Verifica_come(cord):
     pass

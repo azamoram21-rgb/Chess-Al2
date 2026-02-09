@@ -15,7 +15,10 @@ class Tablero:
                     self.casillas[i][j] = numeros[i]
                 elif i == len(self.casillas[i]) - 1 and j != 0:
                     self.casillas[i][j] = letras[j]
-    
+
+    def agregar_piezas(self, j1_lista, j2_lista):
+        pass
+
     def printear(matriz):
         separador_horizontal = "  -" + "----" * len(matriz[0])
         print("\n   TABLERO DE JUEGO")
@@ -24,15 +27,6 @@ class Tablero:
             linea_visible = " | ".join(f"{celda}" for celda in fila)
             print(f"| {linea_visible} |")
             print(separador_horizontal)
-
-
-class Jugador:
-
-    def __init__(self, color:str, nombre:str):
-        self.color = color
-        self.nombre = nombre
-        self.jaque = False
-        self.piezas = []
 
 
 class pieza(ABC):
@@ -45,8 +39,10 @@ class pieza(ABC):
     def mover(self):
         pass
 
+    
 
-class caballo(pieza):
+
+class Caballo(pieza):
     def __init__(self, posicion, tipo):
         super().__init__(posicion, tipo)
 
@@ -68,3 +64,16 @@ class caballo(pieza):
                         self.posicion = [cords[0], cords[1]]
 
 
+class Jugador:
+
+    def __init__(self, nombre:str, color:str):
+        self.color = color
+        self.nombre = nombre
+        self.jaque = False
+        self.piezas = []
+
+        if self.color == "blancas":
+            caballo1 = Caballo(["7", "6"], "C")
+            caballo2 = Caballo(["7", "1"], "C")
+            self.piezas.append(caballo1)
+            self.piezas.append(caballo2)
