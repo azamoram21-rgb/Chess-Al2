@@ -22,3 +22,11 @@ tablero = Tablero()
 seacabo = False
 tablero.agregar_piezas(jugador1, jugador2)
 tablero.printear()
+tablero.limpiar()
+tablero.printear()
+
+
+"""if preferencia == 0:
+    print(f"Turno de {nombre1}")
+    movimiento = str(input("movimiento: "))
+    """

@@ -37,6 +37,9 @@ class Tablero:
             print(f"| {linea_visible} |")
             print(separador_horizontal)
 
+    def limpiar(self):
+        self.casillas = [["-" for _ in range(9)] for _ in range(9)]
+        self.tabulaziones()
 
 class pieza(ABC):
     def __init__(self, posicion:list, tipo:str):
@@ -69,7 +72,9 @@ class Caballo(pieza):
                         return False
                     else:
                         self.posicion = [cords[0], cords[1]]
-
+                        return self.posicion
+    
+    
 
 class Jugador:
 
@@ -78,14 +83,15 @@ class Jugador:
         self.nombre = nombre
         self.jaque = False
         self.piezas = []
+        self.muertas = []
 
         if self.color == "blancas":
-            caballo1 = Caballo(posicion=["7", "6"], tipo="C")
-            caballo2 = Caballo(["7", "1"], "C")
+            caballo1 = Caballo(posicion=["7", "6"], tipo="CB")
+            caballo2 = Caballo(["7", "1"], "CB")
             self.piezas.append(caballo1)
             self.piezas.append(caballo2)
         else:
-            caballo1 = Caballo(posicion=["0", "6"], tipo="C")
-            caballo2 = Caballo(["0", "1"], "C")
+            caballo1 = Caballo(posicion=["0", "6"], tipo="CN")
+            caballo2 = Caballo(["0", "1"], "CN")
             self.piezas.append(caballo1)
             self.piezas.append(caballo2)
