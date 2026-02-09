@@ -20,3 +20,5 @@ print("COMENCEMOOOOOOS")
 reglas()
 tablero = Tablero()
 seacabo = False
+tablero.agregar_piezas(jugador1, jugador2)
+tablero.printear()

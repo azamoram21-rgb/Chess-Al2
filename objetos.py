@@ -6,6 +6,7 @@ class Tablero:
     def __init__(self):
         self.casillas = [["-" for _ in range(9)] for _ in range(9)]
         self.movimiento = 0
+
     def tabulaziones(self):
         for i in range(0, len(self.casillas)):
             numeros = "12345678X"
@@ -16,14 +17,22 @@ class Tablero:
                 elif i == len(self.casillas[i]) - 1 and j != 0:
                     self.casillas[i][j] = letras[j]
 
-    def agregar_piezas(self, j1_lista, j2_lista):
-        pass
+    def agregar_piezas(self, j1, j2):
+        for pieza in j1.piezas:
+            cord_x = int(pieza.posicion[0])
+            cord_y = int(pieza.posicion[1])
+            self.casillas[cord_x][cord_y + 1] = pieza.tipo
+        for pieza in j2.piezas:
+            cord_x = int(pieza.posicion[0])
+            cord_y = int(pieza.posicion[1])
+            self.casillas[cord_x][cord_y + 1] = pieza.tipo
 
-    def printear(matriz):
-        separador_horizontal = "  -" + "----" * len(matriz[0])
+    def printear(self):
+        self.tabulaziones()
+        separador_horizontal = "  -" + "----" * len(self.casillas[0])
         print("\n   TABLERO DE JUEGO")
         print(separador_horizontal)
-        for fila in matriz:
+        for fila in self.casillas:
             linea_visible = " | ".join(f"{celda}" for celda in fila)
             print(f"| {linea_visible} |")
             print(separador_horizontal)
@@ -40,8 +49,6 @@ class pieza(ABC):
         pass
 
     
-
-
 class Caballo(pieza):
     def __init__(self, posicion, tipo):
         super().__init__(posicion, tipo)
@@ -73,7 +80,12 @@ class Jugador:
         self.piezas = []
 
         if self.color == "blancas":
-            caballo1 = Caballo(["7", "6"], "C")
+            caballo1 = Caballo(posicion=["7", "6"], tipo="C")
             caballo2 = Caballo(["7", "1"], "C")
+            self.piezas.append(caballo1)
+            self.piezas.append(caballo2)
+        else:
+            caballo1 = Caballo(posicion=["0", "6"], tipo="C")
+            caballo2 = Caballo(["0", "1"], "C")
             self.piezas.append(caballo1)
             self.piezas.append(caballo2)
