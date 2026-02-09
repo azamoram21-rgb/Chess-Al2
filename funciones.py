@@ -46,11 +46,19 @@ def traductor_movimiento(movimiento:str):
     
 def parametrizacion_mov(movimiento:list):
     letras = "HGFEDCBA"
+    letritas = "hgfedcba"
     for i in range(0, len(letras)):
-        if movimiento[0] == letras[i]:
+        if movimiento[1] == letras[i] or movimiento[1] == letritas[i]:
             #esto en forma matriz (fila, columna)
-            return [int(movimiento[1]) - 1, i]
+            return [int(movimiento[2]) - 1, i + 1]
 
+def encontrar_pieza_mover(lista_params:list, jugador):
+    booleano = False
+    for pieza in jugador.piezas:
+        if lista_params[0] == pieza.tipo:
+            if pieza.mover(lista_params):
+                booleano = True
+    return booleano
 
 
 def Verifica_come(cord):

@@ -4,7 +4,7 @@ from math import sqrt
 
 class Tablero:
     def __init__(self):
-        self.casillas = [["-" for _ in range(9)] for _ in range(9)]
+        self.casillas = [["--" for _ in range(9)] for _ in range(9)]
         self.movimiento = 0
 
     def tabulaziones(self):
@@ -13,9 +13,9 @@ class Tablero:
             letras = "XHGFEDCBA"
             for j in range(0, len(self.casillas[i])):
                 if i != len(self.casillas) - 1 and j == 0:
-                    self.casillas[i][j] = numeros[i]
+                    self.casillas[i][j] = numeros[i] + " " 
                 elif i == len(self.casillas[i]) - 1 and j != 0:
-                    self.casillas[i][j] = letras[j]
+                    self.casillas[i][j] = letras[j] + " " 
 
     def agregar_piezas(self, j1, j2):
         for pieza in j1.piezas:
@@ -29,7 +29,7 @@ class Tablero:
 
     def printear(self):
         self.tabulaziones()
-        separador_horizontal = "  -" + "----" * len(self.casillas[0])
+        separador_horizontal =  "-" * 46
         print("\n   TABLERO DE JUEGO")
         print(separador_horizontal)
         for fila in self.casillas:
@@ -38,8 +38,9 @@ class Tablero:
             print(separador_horizontal)
 
     def limpiar(self):
-        self.casillas = [["-" for _ in range(9)] for _ in range(9)]
+        self.casillas = [["--" for _ in range(9)] for _ in range(9)]
         self.tabulaziones()
+
 
 class pieza(ABC):
     def __init__(self, posicion:list, tipo:str):
@@ -69,13 +70,13 @@ class Caballo(pieza):
                     param_y = cords[1] - self.posicion[1]
                     value = sqrt(((param_x)^2) + ((param_y)^2))
                     if value != sqrt(5):
+                        # print("Así no se mueve el caballito")
                         return False
                     else:
                         self.posicion = [cords[0], cords[1]]
-                        return self.posicion
+                        return True
     
     
-
 class Jugador:
 
     def __init__(self, nombre:str, color:str):
