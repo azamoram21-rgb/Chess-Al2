@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from funciones import traductor_movimiento, parametrizacion_mov
 from math import sqrt
 
+
 class Tablero:
     def __init__(self):
         self.casillas = [["--" for _ in range(9)] for _ in range(9)]
@@ -66,9 +67,10 @@ class Caballo(pieza):
                     pass
                 else:
                     cords = parametrizacion_mov([movement[1], movement[2]])
-                    param_x = cords[0] - self.posicion[0]
-                    param_y = cords[1] - self.posicion[1]
-                    value = sqrt(((param_x)^2) + ((param_y)^2))
+                    # 5,0
+                    param_x = cords[0] - int(self.posicion[0])
+                    param_y = cords[1] - int(self.posicion[1])
+                    value = sqrt(((param_x)**2) + ((param_y)**2))
                     if value != sqrt(5):
                         # print("Así no se mueve el caballito")
                         return False
@@ -76,7 +78,23 @@ class Caballo(pieza):
                         self.posicion = [cords[0], cords[1]]
                         return True
     
-    
+
+class peon(pieza):
+    def __init__(self, posicion, tipo):
+        super().__init__(posicion, tipo)
+        self.primer_mov = True
+
+
+    def mover(self, nueva):
+        movement = traductor_movimiento(nueva)
+        if movement != 0:
+            if (movement[0] == "C" or movement[0] == "c"):
+                # Caso come
+                if movement[3]:
+                    pass
+                else:
+                    # hacer como se mueve el peor
+                    pass
 class Jugador:
 
     def __init__(self, nombre:str, color:str):

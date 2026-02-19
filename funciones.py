@@ -6,7 +6,7 @@ def reglas():
     print("------REGLAS------")
     print("para mover una pieza en tu turno: CH4")
     print("Esto mueve el Caballo a C4")
-    print("Recuerda que tienes que seguir las reglas clásicas del ajedrez")
+    print(" uerda que tienes que seguir las reglas clásicas del ajedrez")
     print("NO MUEVAS UNA PIEZA FUERA DEL TABLERO")
 
 def mensaje_error_index():
@@ -48,16 +48,18 @@ def parametrizacion_mov(movimiento:list):
     letras = "HGFEDCBA"
     letritas = "hgfedcba"
     for i in range(0, len(letras)):
-        if movimiento[1] == letras[i] or movimiento[1] == letritas[i]:
+        if movimiento[0] == letras[i] or movimiento[0] == letritas[i]:
             #esto en forma matriz (fila, columna)
-            return [int(movimiento[2]) - 1, i + 1]
+            return [int(movimiento[1]) - 1, i]
+        
 
 def encontrar_pieza_mover(lista_params:list, jugador):
     booleano = False
     for pieza in jugador.piezas:
-        if lista_params[0] == pieza.tipo:
+        if lista_params[0] == pieza.tipo[0]:
             if pieza.mover(lista_params):
                 booleano = True
+                break
     return booleano
 
 

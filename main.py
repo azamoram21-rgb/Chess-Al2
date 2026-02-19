@@ -3,7 +3,6 @@ from objetos import Jugador, Tablero
 from funciones import reglas, traductor_movimiento, parametrizacion_mov, encontrar_pieza_mover
 
 
-
 nombre1 = str(input("Ingrese el nombre, jugador1: "))
 nombre2 = str(input("Ingrese el nombre, jugador2: "))
 preferencia = random.randint(0,1)
@@ -26,16 +25,13 @@ seacabo = False
 tablero.agregar_piezas(jugador1, jugador2)
 tablero.printear()
 
-
-
-
 print(f"Turno de {jugador1.nombre}")
 movimiento = str(input("movimiento: ")).upper()
 jugada = traductor_movimiento(movimiento)
 rectificador = encontrar_pieza_mover(jugada, jugador1)
-print(rectificador)
 if rectificador:
-    param_jugada = parametrizacion_mov(jugada)
     tablero.limpiar()
     tablero.agregar_piezas(jugador1, jugador2)
     tablero.printear()
+else:
+    print("ahi no se puede mover...")
