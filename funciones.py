@@ -6,7 +6,7 @@ def reglas():
     print("------REGLAS------")
     print("para mover una pieza en tu turno: CH4")
     print("Esto mueve el Caballo a C4")
-    print(" uerda que tienes que seguir las reglas clásicas del ajedrez")
+    print("Recuerda que tienes que seguir las reglas clásicas del ajedrez")
     print("NO MUEVAS UNA PIEZA FUERA DEL TABLERO")
 
 def mensaje_error_index():

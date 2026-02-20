@@ -79,22 +79,37 @@ class Caballo(pieza):
                         return True
     
 
-class peon(pieza):
+class Peon(pieza):
     def __init__(self, posicion, tipo):
         super().__init__(posicion, tipo)
-        self.primer_mov = True
+        self.se_movio = False
 
 
     def mover(self, nueva):
         movement = traductor_movimiento(nueva)
         if movement != 0:
-            if (movement[0] == "C" or movement[0] == "c"):
+            if (movement[0] == "P" or movement[0] == "p"):
                 # Caso come
                 if movement[3]:
                     pass
                 else:
-                    # hacer como se mueve el peor
-                    pass
+                    cords = parametrizacion_mov([movement[1], movement[2]])
+                    param_x = cords[0] - int(self.posicion[0])
+                    param_y = cords[1] - int(self.posicion[1])
+                    if not self.se_movio and param_y == 0 and abs(param_x) == 2:
+                        self.se_movio == True
+                        self.posicion = [cords[0], cords[1]]
+                        return True
+                    elif param_y == 0 and abs(param_x) == 1:
+                        self.posicion = [cords[0], cords[1]]
+                        return True 
+                    else:
+                        return False
+                    
+
+
+
+
 class Jugador:
 
     def __init__(self, nombre:str, color:str):
@@ -105,12 +120,48 @@ class Jugador:
         self.muertas = []
 
         if self.color == "blancas":
-            caballo1 = Caballo(posicion=["7", "6"], tipo="CB")
+            # Tomar en cuenta que el tablero es de 8x8
+            caballo1 = Caballo(posicion = ["7", "6"], tipo = "CB")
             caballo2 = Caballo(["7", "1"], "CB")
+            peon1 = Peon(["6", "0"], tipo = "PB")
+            peon2 = Peon(["6", "1"], tipo = "PB")
+            peon3 = Peon(["6", "2"], tipo = "PB")
+            peon4 = Peon(["6", "3"], tipo = "PB")
+            peon5 = Peon(["6", "4"], tipo = "PB")
+            peon6 = Peon(["6", "5"], tipo = "PB")
+            peon7 = Peon(["6", "6"], tipo = "PB")
+            peon8 = Peon(["6", "7"], tipo = "PB")
             self.piezas.append(caballo1)
             self.piezas.append(caballo2)
+            self.piezas.append(peon1)
+            self.piezas.append(peon2)
+            self.piezas.append(peon3)
+            self.piezas.append(peon4)
+            self.piezas.append(peon5)
+            self.piezas.append(peon6)
+            self.piezas.append(peon7)
+            self.piezas.append(peon8)
+
         else:
             caballo1 = Caballo(posicion=["0", "6"], tipo="CN")
             caballo2 = Caballo(["0", "1"], "CN")
+            peon1 = Peon(["1", "0"], tipo = "PN")
+            peon2 = Peon(["1", "1"], tipo = "PN")
+            peon3 = Peon(["1", "2"], tipo = "PN")
+            peon4 = Peon(["1", "3"], tipo = "PN")
+            peon5 = Peon(["1", "4"], tipo = "PN")
+            peon6 = Peon(["1", "5"], tipo = "PN")
+            peon7 = Peon(["1", "6"], tipo = "PN")
+            peon8 = Peon(["1", "7"], tipo = "PN")
             self.piezas.append(caballo1)
             self.piezas.append(caballo2)
+            self.piezas.append(peon1)
+            self.piezas.append(peon2)
+            self.piezas.append(peon3)
+            self.piezas.append(peon4)
+            self.piezas.append(peon5)
+            self.piezas.append(peon6)
+            self.piezas.append(peon7)
+            self.piezas.append(peon8)
+
+
