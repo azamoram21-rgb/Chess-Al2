@@ -65,3 +65,6 @@ def encontrar_pieza_mover(lista_params:list, jugador):
 
 def Verifica_come(cord):
     pass
+
+def hay_algo_delante(pieza):
+    pass
